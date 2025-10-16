@@ -97,7 +97,7 @@ export default function Home() {
   const benefits = [
     { icon: <Target className="w-8 h-8" />, title: "Taux de Réussite 98%", desc: "Le plus élevé de l’Ouest" },
     { icon: <Clock className="w-8 h-8" />, title: "Traitement Rapide", desc: "3 mois en moyenne" },
-    { icon: <Shield className="w-8 h-8" />, title: "Garantie Satisfait", desc: "Ou remboursé à 100%" },
+    { icon: <Shield className="w-8 h-8" />, title: "Garantie Satisfait", desc: "Votre satisfaction est notre priorité" },
     { icon: <Award className="w-8 h-8" />, title: "Experts Certifiés", desc: "15+ ans d'expérience" }
   ];
 
@@ -192,7 +192,7 @@ export default function Home() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-300 mb-8 sm:mb-12 max-w-4xl mx-auto font-light leading-relaxed px-4">
-            <span className="text-cyan-400 font-semibold">Formation d'élite</span>, préparation <span className="text-blue-400 font-semibold">certifiée</span> et <span className="text-purple-400 font-semibold">visa garanti</span> pour étudier dans les meilleures universités mondiales
+            <span className="text-cyan-400 font-semibold">Formation d'élite</span>, préparation <span className="text-blue-400 font-semibold">certifiée</span> et <span className="text-purple-400 font-semibold">visa garanti a 90%</span> pour étudier dans les meilleures universités mondiales
           </p>
 
           {/* CTA Buttons */}
@@ -299,7 +299,6 @@ export default function Home() {
                 features: [
                   "Professeurs natifs certifiés",
                   "Classes sur mesure (individuel/groupe)",
-                  "Plateorme d'e-learning 24/7",
                   "Certificat reconnu internationalement"
                 ],
                 color: "from-cyan-500 to-blue-600",
@@ -307,7 +306,7 @@ export default function Home() {
               {
                 icon: <FileText className="w-16 h-16" />,
                 title: "Préparation Examens Certifiés",
-                desc: "TOEFL, IELTS, DELF, TCF - Garantie de score ou remboursé",
+                desc: "TOEFL, IELTS, DELF, TCF - Garantie de score",
                 features: [
                   "Méthodologie exclusive 98% réussite",
                   "Tests blancs illimités + corrections",
