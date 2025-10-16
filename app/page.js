@@ -11,29 +11,6 @@ export default function Home() {
   const heroRef = useRef(null);
 
   useEffect(() => {
-    const FB_PIXEL_ID = '887402196248385';
-
-    if (!window.fbq) {
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = true;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = true;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', FB_PIXEL_ID);
-    }
-    fbq('track', 'PageView');
-
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -64,9 +41,27 @@ export default function Home() {
     };
   }, []);
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = (buttonName = 'WhatsApp') => {
     if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact');
+      // Track Contact event with custom data
+      window.fbq('track', 'Contact', {
+        content_name: buttonName,
+        content_type: 'product'
+      });
+      // Also track Lead event
+      window.fbq('track', 'Lead', {
+        content_name: buttonName,
+        content_type: 'product'
+      });
+    }
+  };
+
+  const handleVideoClick = () => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'ViewContent', {
+        content_name: 'Testimonials Video',
+        content_type: 'video'
+      });
     }
   };
 
@@ -119,7 +114,7 @@ export default function Home() {
           href="https://wa.me/237691583934"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleWhatsAppClick}
+          onClick={() => handleWhatsAppClick('Floating WhatsApp Button')}
           className="group relative bg-gradient-to-r from-green-400 to-green-600 text-white p-4 sm:p-5 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
         >
           <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7" />
@@ -128,7 +123,10 @@ export default function Home() {
           </span>
         </a>
         <button
-          onClick={() => setShowVideo(true)}
+          onClick={() => {
+            handleVideoClick();
+            setShowVideo(true);
+          }}
           className="group relative bg-gradient-to-r from-red-500 to-pink-600 text-white p-4 sm:p-5 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
         >
           <Play className="w-6 sm:w-7 h-6 sm:h-7" />
@@ -199,7 +197,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-4">
             <a
               href="https://wa.me/237691583934"
-              onClick={handleWhatsAppClick}
+              onClick={() => handleWhatsAppClick('Hero Consultation Button')}
               className="group relative w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full font-bold text-base sm:text-lg md:text-xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-cyan-500/50"
             >
               <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
@@ -210,7 +208,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
             <button
-              onClick={() => setShowVideo(true)}
+              onClick={() => {
+                handleVideoClick();
+                setShowVideo(true);
+              }}
               className="group w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full font-bold text-base sm:text-lg md:text-xl hover:bg-white/20 active:bg-white/30 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3"
             >
               <Play className="w-5 sm:w-6 h-5 sm:h-6" />
@@ -368,7 +369,7 @@ export default function Home() {
                         <div className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{service.price}</div>
                         <a
                           href="https://wa.me/237691583934"
-                          onClick={handleWhatsAppClick}
+                          onClick={() => handleWhatsAppClick(`Service Card - ${service.title}`)}
                           className={`block w-full py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-center text-sm sm:text-base bg-gradient-to-r ${service.color} hover:shadow-2xl hover:shadow-cyan-500/50 active:scale-95 transition-all duration-300`}
                         >
                           Commencer Maintenant →
@@ -469,7 +470,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12 px-4">
               <a
                 href="https://wa.me/237691583934"
-                onClick={handleWhatsAppClick}
+                onClick={() => handleWhatsAppClick('Final CTA Button')}
                 className="group relative w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-bold text-base sm:text-lg md:text-xl lg:text-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-green-500/50"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
