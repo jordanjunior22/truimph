@@ -11,7 +11,7 @@ export default function Home() {
   const heroRef = useRef(null);
 
   useEffect(() => {
-    const FB_PIXEL_ID = 'YOUR_PIXEL_ID';
+    const FB_PIXEL_ID = '887402196248385';
 
     if (!window.fbq) {
       !(function (f, b, e, v, n, t, s) {
