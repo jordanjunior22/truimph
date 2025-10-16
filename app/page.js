@@ -4,10 +4,8 @@ import { useEffect, useState, useRef } from 'react';
 import { GraduationCap, Globe, FileText, CheckCircle, Star, ArrowRight, MessageCircle, Users, Award, TrendingUp, Play, X, Sparkles, Target, Clock, Shield } from 'lucide-react';
 
 export default function Home() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [showVideo, setShowVideo] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [visibleSection, setVisibleSection] = useState('');
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -28,11 +26,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-
     // Auto-rotate testimonials
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % 3);
@@ -53,7 +46,6 @@ export default function Home() {
     document.querySelectorAll('.observe').forEach((el) => observer.observe(el));
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       clearInterval(interval);
     };
   }, []);
@@ -134,16 +126,6 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white min-h-screen overflow-x-hidden">
-      {/* Custom cursor follower */}
-      <div 
-        className="fixed w-8 h-8 border-2 border-cyan-400 rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-100"
-        style={{ 
-          left: `${mousePos.x}px`, 
-          top: `${mousePos.y}px`,
-          transform: 'translate(-50%, -50%)'
-        }}
-      />
-
       {/* Floating Action Buttons */}
       <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex flex-col gap-3 sm:gap-4">
         <a
