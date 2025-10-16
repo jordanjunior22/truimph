@@ -11,6 +11,23 @@ export default function Home() {
   const heroRef = useRef(null);
 
   useEffect(() => {
+    // Verify pixel is loaded
+    if (typeof window !== 'undefined') {
+      // Wait a bit for pixel to load
+      const checkPixel = setTimeout(() => {
+        if (window.fbq) {
+          console.log('✅ Facebook Pixel loaded successfully');
+          console.log('Pixel ID: 887402196248385');
+        } else {
+          console.warn('⚠️ Facebook Pixel not loaded');
+        }
+      }, 1000);
+
+      return () => clearTimeout(checkPixel);
+    }
+  }, []);
+
+  useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -42,26 +59,45 @@ export default function Home() {
   }, []);
 
   const handleWhatsAppClick = (buttonName = 'WhatsApp') => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      // Track Contact event with custom data
-      window.fbq('track', 'Contact', {
-        content_name: buttonName,
-        content_type: 'product'
-      });
-      // Also track Lead event
-      window.fbq('track', 'Lead', {
-        content_name: buttonName,
-        content_type: 'product'
-      });
+    try {
+      if (typeof window !== 'undefined') {
+        // Ensure fbq is available
+        if (window.fbq) {
+          console.log('Tracking Contact event:', buttonName);
+          window.fbq('track', 'Contact', {
+            content_name: buttonName,
+            content_type: 'product'
+          });
+
+          console.log('Tracking Lead event:', buttonName);
+          window.fbq('track', 'Lead', {
+            content_name: buttonName,
+            content_type: 'product'
+          });
+        } else {
+          console.warn('fbq not available yet');
+        }
+      }
+    } catch (error) {
+      console.error('Error tracking WhatsApp click:', error);
     }
   };
 
   const handleVideoClick = () => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'ViewContent', {
-        content_name: 'Testimonials Video',
-        content_type: 'video'
-      });
+    try {
+      if (typeof window !== 'undefined') {
+        if (window.fbq) {
+          console.log('Tracking ViewContent event');
+          window.fbq('track', 'ViewContent', {
+            content_name: 'Testimonials Video',
+            content_type: 'video'
+          });
+        } else {
+          console.warn('fbq not available yet');
+        }
+      }
+    } catch (error) {
+      console.error('Error tracking video click:', error);
     }
   };
 

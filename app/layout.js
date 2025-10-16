@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* Facebook Pixel Code */}
         <script
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '887402196248385');
               fbq('track', 'PageView');
+              console.log('Facebook Pixel initialized');
             `,
           }}
         />
