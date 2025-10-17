@@ -133,11 +133,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => handleWhatsAppClick('Floating WhatsApp Button')}
-          className="group relative bg-gradient-to-r from-green-400 to-green-600 text-white p-4 sm:p-5 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
+          className="group relative bg-[#25D366] hover:bg-[#20BA5A] text-white p-4 sm:p-5 rounded-full shadow-2xl hover:shadow-[#25D366]/50 transition-all duration-300 hover:scale-110 active:scale-95"
         >
           <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7" />
           <span className="hidden sm:block absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-lg font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-xl">
-            Discuter maintenant
+            Discuter sur whatsapp
           </span>
         </a>
         <button
@@ -154,17 +154,75 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Video Modal */}
+      {/* Video Modal - Flash Player Error */}
       {showVideo && (
         <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
           <button
             onClick={() => setShowVideo(false)}
-            className="absolute top-8 right-8 text-white hover:text-cyan-400 transition-colors"
+            className="absolute top-8 right-8 text-white hover:text-red-400 transition-colors z-10"
           >
             <X className="w-10 h-10" />
           </button>
-          <div className="max-w-4xl w-full aspect-video bg-gray-900 rounded-2xl flex items-center justify-center">
-            <p className="text-2xl text-gray-400">Vidéo de témoignages</p>
+
+          {/* Flash Player Error Container */}
+          <div className="max-w-2xl w-full">
+            {/* Flash Player Background */}
+            <div className="bg-gradient-to-b from-gray-800 to-black rounded-lg overflow-hidden shadow-2xl border border-gray-700">
+              {/* Video Area with Error */}
+              <div className="aspect-video bg-black flex flex-col items-center justify-center relative">
+                {/* Flash Player Error Message */}
+                <div className="text-center px-8">
+                  <div className="mb-6">
+                    <div className="text-6xl mb-4">⚠️</div>
+                    <h3 className="text-2xl font-bold text-red-500 mb-2">Flash Player Error</h3>
+                    <p className="text-gray-300 text-sm mb-4">Error Code: 2048</p>
+                  </div>
+
+                  <div className="bg-gray-900 rounded p-4 mb-6 text-left border border-gray-700">
+                    <p className="text-gray-400 text-xs font-mono mb-2">Error Details:</p>
+                    <p className="text-red-400 text-xs font-mono">
+                      SecurityError: Error #2048: Security sandbox violation
+                    </p>
+                    <p className="text-gray-500 text-xs font-mono mt-2">
+                      The file cannot be accessed from this domain.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-gray-400 text-sm">Possible solutions:</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Check your internet connection</li>
+                      <li>• Verify the video URL is correct</li>
+                      <li>• Try refreshing the page</li>
+                      <li>• Update Adobe Flash Player</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Flash Player Controls Bar */}
+              <div className="bg-gray-900 px-4 py-3 border-t border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <button className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">
+                      ▶ Play
+                    </button>
+                    <div className="w-32 h-1 bg-gray-700 rounded-full"></div>
+                    <span className="text-gray-400 text-xs">00:00 / 00:00</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-400 text-xs">🔊</span>
+                    <div className="w-16 h-1 bg-gray-700 rounded-full"></div>
+                    <span className="text-gray-400 text-xs">⛶</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Error Info */}
+            <div className="mt-4 text-center text-gray-400 text-xs">
+              <p>Flash Player v32.0.0.465 | © 2024 Adobe Systems</p>
+            </div>
           </div>
         </div>
       )}
@@ -216,11 +274,11 @@ export default function Home() {
             <a
               href="https://wa.me/237691583934"
               onClick={() => handleWhatsAppClick('Hero Consultation Button')}
-              className="group relative w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full font-bold text-base sm:text-lg md:text-xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-cyan-500/50"
+              className="group relative w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-[#25D366] hover:bg-[#20BA5A] rounded-full font-bold text-base sm:text-lg md:text-xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-[#25D366]/50"
             >
               <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                 <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6" />
-                <span>Consultation Gratuite</span>
+                <span>Discuter sur whatsapp</span>
                 <ArrowRight className="w-5 sm:w-6 h-5 sm:h-6 group-hover:translate-x-2 transition-transform hidden sm:block" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -388,9 +446,9 @@ export default function Home() {
                         <a
                           href="https://wa.me/237691583934"
                           onClick={() => handleWhatsAppClick(`Service Card - ${service.title}`)}
-                          className={`block w-full py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-center text-sm sm:text-base bg-gradient-to-r ${service.color} hover:shadow-2xl hover:shadow-cyan-500/50 active:scale-95 transition-all duration-300`}
+                          className="block w-full py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-center text-sm sm:text-base bg-[#25D366] hover:bg-[#20BA5A] text-white hover:shadow-2xl hover:shadow-[#25D366]/50 active:scale-95 transition-all duration-300"
                         >
-                          Commencer Maintenant →
+                          Discuter sur whatsapp
                         </a>
                       </div>
                     </div>
@@ -489,11 +547,11 @@ export default function Home() {
               <a
                 href="https://wa.me/237691583934"
                 onClick={() => handleWhatsAppClick('Final CTA Button')}
-                className="group relative w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-bold text-base sm:text-lg md:text-xl lg:text-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-green-500/50"
+                className="group relative w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 bg-[#25D366] hover:bg-[#20BA5A] rounded-full font-bold text-base sm:text-lg md:text-xl lg:text-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-[#25D366]/50"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                   <MessageCircle className="w-5 sm:w-6 md:w-8 h-5 sm:h-6 md:h-8" />
-                  <span>Démarrer Gratuitement</span>
+                  <span>Discuter sur whatsapp</span>
                   <ArrowRight className="w-5 sm:w-6 md:w-8 h-5 sm:h-6 md:h-8 group-hover:translate-x-2 sm:group-hover:translate-x-3 transition-transform hidden sm:block" />
                 </span>
               </a>
