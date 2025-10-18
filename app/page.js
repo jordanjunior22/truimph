@@ -8,6 +8,21 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const heroRef = useRef(null);
 
+  // WhatsApp number and starter messages
+  const WHATSAPP_NUMBER = '237678291126';
+
+  const getWhatsAppLink = (message = '') => {
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  };
+
+  const starterMessages = {
+    floating: 'Bonjour! 👋 Je voudrais en savoir plus sur vos services.',
+    hero: 'Bonjour! 👋 Je suis intéressé par une consultation gratuite.',
+    service: 'Bonjour! 👋 Je voudrais plus d\'informations sur ce service.',
+    final: 'Bonjour! 👋 Je suis prêt à commencer mon parcours avec Triumph!'
+  };
+
   useEffect(() => {
     // Verify pixel is loaded
     if (typeof window !== 'undefined') {
@@ -129,7 +144,7 @@ export default function Home() {
       {/* Floating Action Buttons */}
       <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex flex-col gap-3 sm:gap-4">
         <a
-          href="https://wa.me/237691583934"
+          href={getWhatsAppLink(starterMessages.floating)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => handleWhatsAppClick('Floating WhatsApp Button')}
@@ -272,7 +287,7 @@ export default function Home() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-4">
             <a
-              href="https://wa.me/237691583934"
+              href={getWhatsAppLink(starterMessages.hero)}
               onClick={() => handleWhatsAppClick('Hero Consultation Button')}
               className="group relative w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-[#25D366] hover:bg-[#20BA5A] rounded-full font-bold text-base sm:text-lg md:text-xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-[#25D366]/50"
             >
@@ -444,7 +459,7 @@ export default function Home() {
                       <div className="border-t border-gray-800 pt-4 sm:pt-6 mt-auto">
                         <div className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{service.price}</div>
                         <a
-                          href="https://wa.me/237691583934"
+                          href={getWhatsAppLink(starterMessages.service)}
                           onClick={() => handleWhatsAppClick(`Service Card - ${service.title}`)}
                           className="block w-full py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-center text-sm sm:text-base bg-[#25D366] hover:bg-[#20BA5A] text-white hover:shadow-2xl hover:shadow-[#25D366]/50 active:scale-95 transition-all duration-300"
                         >
@@ -545,7 +560,7 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12 px-4">
               <a
-                href="https://wa.me/237691583934"
+                href={getWhatsAppLink(starterMessages.final)}
                 onClick={() => handleWhatsAppClick('Final CTA Button')}
                 className="group relative w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 bg-[#25D366] hover:bg-[#20BA5A] rounded-full font-bold text-base sm:text-lg md:text-xl lg:text-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-[#25D366]/50"
               >
